@@ -1,0 +1,46 @@
+{% extends "base.html"%}
+
+
+    {%block content%}
+        <h3 class="text-center"> All employee pages</h3>
+        <div class="container card ">
+            <h4 class="text-decoration-underline">List of Employees</h4>
+        </div>
+
+        <div>
+            <table class="table text-center">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">EmployeeId</th>
+      <th scope="col">EmployeeName</th>
+      <th scope="col">EmployeeEmail</th>
+      <th scope="col">EmployeeAddress</th>
+      <th scope="col">EmployeeNumber</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- allemployees here comes from views/allemployee function -->
+    {% if allemployees %}
+    {% for eachemployee in allemployees %}  
+    <tr>
+        <!-- another way is forloop.counter that  initializes lopp with 1,2... -->
+      <th scope="row">{{eachemployee.id}}</th>      
+      <td>{{eachemployee.employee_id}}</td>
+      <td>{{eachemployee.Name}}</td>
+      <td>{{eachemployee.email}}</td>
+      <td>{{eachemployee.address}}</td>
+      <td>{{eachemployee.phone_nuber}}</td>
+      <td><a href="{% url 'updateemployee' eachemployee.id %}" class="btn btn-sm btn-outline-success">update</a></td>
+      <td><a href="{% url 'deleteemployee' eachemployee.id %}" class="btn btn-sm btn-outline-danger">delete</a></td> 
+    </tr>
+    {% endfor %}
+    {% endif %}
+  </tbody>
+</table>
+        </div>
+    {%endblock content%}
+
+ 
